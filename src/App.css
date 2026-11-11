@@ -1088,3 +1088,152 @@ select {
   }
 
 }
+
+.priority-generator {
+  margin-top: 30px;
+
+  padding: 22px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fbf7fd,
+      #f7effc
+    );
+
+  border: 1px solid #e1cdea;
+  border-radius: 16px;
+}
+
+.priority-generator-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.priority-generator-heading h3 {
+  margin: 0;
+  color: #382640;
+}
+
+.priority-generator-heading p {
+  margin: 6px 0 0;
+
+  max-width: 500px;
+
+  color: #746a79;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.generate-priority-button {
+  flex-shrink: 0;
+
+  border: none;
+  border-radius: 10px;
+
+  padding: 11px 16px;
+
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7500c0,
+      #a100ff
+    );
+
+  font-weight: 600;
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 18px
+    rgba(117, 0, 192, 0.18);
+}
+
+.generate-priority-button:hover {
+  transform: translateY(-1px);
+}
+
+.generated-content {
+  display: grid;
+  gap: 14px;
+
+  margin-top: 20px;
+}
+
+.generated-card {
+  padding: 20px;
+
+  background: white;
+
+  border: 1px solid #e6d9eb;
+  border-radius: 14px;
+}
+
+.generated-card h3 {
+  margin: 7px 0 10px;
+
+  color: #33263a;
+}
+
+.generated-card p {
+  margin: 0;
+
+  color: #625969;
+
+  line-height: 1.65;
+}
+
+.generated-label {
+  color: #7500c0;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 1px;
+}
+
+.reflection-card {
+  border-left: 4px solid #a100ff;
+}
+
+@media (max-width: 650px) {
+
+  .priority-generator-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .generate-priority-button {
+    width: 100%;
+  }
+
+}
+
+.priority-generator {
+  margin-top: 30px;
+
+  padding: 22px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fbf7fd,
+      #f7effc
+    );
+
+  border: 1px solid #e1cdea;
+  border-radius: 16px;
+}
+
+.priority-generator-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}

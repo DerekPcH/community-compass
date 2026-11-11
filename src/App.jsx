@@ -18,6 +18,8 @@ function App() {
   const [communityTarget, setCommunityTarget] = useState(10)
   const [editingTarget, setEditingTarget] = useState(false)
   const [targetInput, setTargetInput] = useState('10')
+  const [showPriorityReflection, setShowPriorityReflection] = useState(false)
+
 
   const filteredOpportunities = opportunities.filter((item) => {
     const searchText = `
@@ -279,6 +281,48 @@ function saveCommunityTarget() {
   setEditingTarget(false)
 }
 
+  function generatePriorityText() {
+    return `Contribute ${communityTarget} hours towards community activities, with a focus on volunteering, outreach, sustainability and charitable initiatives. I will identify relevant opportunities, participate in activities aligned to my interests and track my contribution throughout the year.`
+  }
+  
+function generateReflectionText() {
+  if (completed.length === 0) {
+    return `I have set a community priority target of ${communityTarget} hours. I am currently identifying relevant volunteering, outreach, sustainability and charity opportunities that will allow me to contribute meaningfully towards this target. As I complete activities, I will track my contribution and reflect on the impact I have made.`
+  }
+
+  const volunteeringHours = getCategoryHours('Volunteering')
+  const outreachHours = getCategoryHours('Outreach')
+  const sustainabilityHours = getCategoryHours('Sustainability')
+  const charityHours = getCategoryHours('Charity')
+
+  const impactParts = []
+
+  if (volunteeringHours > 0) {
+    impactParts.push(`${volunteeringHours} hours of volunteering`)
+  }
+
+  if (outreachHours > 0) {
+    impactParts.push(`${outreachHours} hours of outreach`)
+  }
+
+  if (sustainabilityHours > 0) {
+    impactParts.push(
+      `${sustainabilityHours} hours supporting sustainability initiatives`
+    )
+  }
+
+  if (charityHours > 0) {
+    impactParts.push(`${charityHours} hours supporting charity activities`)
+  }
+
+  const impactDescription =
+    impactParts.length > 0
+      ? impactParts.join(', ')
+      : 'a range of community activities'
+
+  return `I have contributed ${totalHours} hours across ${completed.length} completed community ${completed.length === 1 ? 'activity' : 'activities'}, representing ${progress}% of my ${communityTarget}-hour target. My contribution includes ${impactDescription}. Going forward, I will continue identifying opportunities to broaden my community impact and progress towards my target.`
+}
+
   function getMatchReason(item) {
     if (item.location === 'Bristol') {
       return 'This opportunity is based in Bristol and supports your selected community interests.'
@@ -369,9 +413,6 @@ function saveCommunityTarget() {
 
           </div>
 
-
-          <div className="quick-actions">
-
           {searchInterpretation && (
             <div className="ai-interpretation">
               <span className="ai-icon">✨</span>
@@ -387,6 +428,8 @@ function saveCommunityTarget() {
               </div>
             </div>
           )}
+
+          <div className="quick-actions">
 
             <button
               type="button"
@@ -1031,9 +1074,7 @@ function saveCommunityTarget() {
 
                 )}
 
-
-            </div>
-
+              </div>
 
             <div className="impact-breakdown">
 
@@ -1083,6 +1124,74 @@ function saveCommunityTarget() {
 
             </div>
 
+            <div className="priority-generator">
+
+              <div className="priority-generator-heading">
+
+                <div>
+                  <h3>Create Priority & Reflect</h3>
+
+                  <p>
+                    Turn your target and completed community impact
+                    into ready-to-use priority and reflection statements.
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  className="generate-priority-button"
+                  onClick={() =>
+                    setShowPriorityReflection(!showPriorityReflection)
+                  }
+                >
+                  ✨ Create Priority & Reflect
+                </button>
+
+              </div>
+
+
+              {showPriorityReflection && (
+
+                <div className="generated-content">
+
+                  <div className="generated-card">
+
+                    <div className="generated-label">
+                      🎯 MY PRIORITY
+                    </div>
+
+                    <h3>
+                      Community Contribution Priority
+                    </h3>
+
+                    <p>
+                      {generatePriorityText()}
+                    </p>
+
+                  </div>
+
+
+                  <div className="generated-card reflection-card">
+
+                    <div className="generated-label">
+                      ✨ MY REFLECTION
+                    </div>
+
+                    <h3>
+                      Community Impact Reflection
+                    </h3>
+
+                    <p>
+                      {generateReflectionText()}
+                    </p>
+
+                  </div>
+
+                </div>
+
+              )}
+
+            </div>
 
             <div className="priority-section">
 
